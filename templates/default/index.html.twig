@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <H2>Bienvenue</H2>  
+    {{ form_start(form) }}
+        {{form_row(form.fullName)}}        
+        <div class="col-sm-8 col-sm-offset-2" id="exp_list" data-prototype="{{form_widget(form.Experience.vars.prototype)|e('html_attr')}}">
+            {% for row in form.Experience %}
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        {{ row.vars.value.title }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ form_row(row )}}
+                        </h5>
+                    </div>
+                </div>                
+            {% endfor %}
+        </div>        
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}
