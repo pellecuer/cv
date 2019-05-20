@@ -11,24 +11,66 @@ $(document).ready(function() {
   //getTheCollerion Holder
   $collectionHolder = $("#exp_list");
 
-  //add remove button to existing items
-  $collectionHolder.find(".card").each(function() {
-    addRemoveButtton($(this));
-  });
+  //Append the add new item to the collection holder
+  $collectionHolder.append($addNewItem);
+  $collectionHolder.data('index', $collectionHolder.find('.panel').length)
+
+
+  //handle the click event for addNew item
+  $addNewItem.click(function(e){
+    e.preventDefault();
+    //create a new form and append it to collectionHolder
+    addNewForm();
+  })
+
 });
 
-//add new items (experience forms)
+function addNewForm(){
+  //getting the prototype
+  var prototype = $collectionHolder.data('prototype');
 
-//remove them
+  //get the index
+  var index = $collectionHolder.data('index')
+
+
+  //create the form
+  var newForm=prototype;
+
+  newForm= newForm.replace(/_name_/g. index);
+
+  $collectionHolder.data('index', index++);
+  //create the card
+  var $card = $("<div class= 'card card-warning'><div class='card card heading'></div></div>");
+
+  //create the card body and append the form to it
+  var $cardBody = $("<div class='card-body'></div>").append(newForm);
+
+  //append the body to the panel
+  $card.append($cardBody);
+
+  //append remove button to the new card
+  addRemoveButtton($card);
+
+  //append the $card to the addNewItem
+  $addNewItem.before($card);
+
+}
+
+  //add new items (experience forms)
+
+
+  //remove them
 
 function addRemoveButtton($card) {
   //create remove button
   var $removeButton = $("<a href='#' class='btn btn-danger'>Remove</a>");
-
+  
+  //appending the remove button to the card footer
   var $cardFooter = $("<div class='card-footer'></div>").append($removeButton);
 
   //handle the click eventg of the remove button
   $removeButton.click(function (e) {
+    e.preventDefault();
     $(e.target).parents('.card').slideUp(1000, function() {
         $(this).remove();
     })
@@ -37,6 +79,7 @@ function addRemoveButtton($card) {
   //append the footer to the card
   $card.append($cardFooter);
 }
+
 
 // // setup an "add a tag" link
 // var $addTagButton = $('<button type="button" class="add_tag_link">Add a tag</button>');
@@ -59,4 +102,4 @@ function addRemoveButtton($card) {
 //     });
 // });
 
-//remove them
+

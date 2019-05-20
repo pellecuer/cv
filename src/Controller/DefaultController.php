@@ -17,6 +17,7 @@ class DefaultController extends AbstractController
      */
     public function index(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
@@ -33,6 +34,8 @@ class DefaultController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
         }
 
         
