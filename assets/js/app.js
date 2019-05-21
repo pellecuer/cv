@@ -44,7 +44,7 @@ function addNewForm(){
   newForm= newForm.replace(/_name_/g. index);
 
 
-  $collectionHolder.data('index', index++);
+  $collectionHolder.data('index', index+1);
   //create the card
   var $card = $("<div class= 'card card-warning'><div class='card-heading'></div></div>");
 
