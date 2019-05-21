@@ -5,15 +5,20 @@ require("../css/app.css");
 var $collectionHolder;
 
 //add new items (experience forms)
-var $addNewItem = $("<a href='#' class='btn btn-info'>Add new item</a>");
+var $addNewItem = $('<a href="#" class="btn btn-success">Add new item</a>');
 
 $(document).ready(function() {
-  //getTheCollerion Holder
+  //getTheCollection Holder
   $collectionHolder = $("#exp_list");
 
   //Append the add new item to the collection holder
   $collectionHolder.append($addNewItem);
-  $collectionHolder.data('index', $collectionHolder.find('.panel').length)
+  $collectionHolder.data('index', $collectionHolder.find('.card').length)
+
+  //add remove button to existing items
+  $collectionHolder.find('.card').each(function(){
+    addRemoveButtton($(this));
+  })
 
 
   //handle the click event for addNew item
@@ -38,17 +43,18 @@ function addNewForm(){
 
   newForm= newForm.replace(/_name_/g. index);
 
+
   $collectionHolder.data('index', index++);
   //create the card
-  var $card = $("<div class= 'card card-warning'><div class='card card heading'></div></div>");
+  var $card = $("<div class= 'card card-warning'><div class='card-heading'></div></div>");
 
   //create the card body and append the form to it
   var $cardBody = $("<div class='card-body'></div>").append(newForm);
 
-  //append the body to the panel
+  //append the body to the card
   $card.append($cardBody);
 
-  //append remove button to the new card
+  //append the remove button to the new card
   addRemoveButtton($card);
 
   //append the $card to the addNewItem
