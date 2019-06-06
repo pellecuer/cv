@@ -7,11 +7,11 @@
     <H2>Bienvenue</H2>  
     {{ form_start(form) }}
         {{form_row(form.fullName)}}        
-        <div class="col-sm-8 col-sm-offset-2" id="exp_list" data-prototype="{{form_widget(form.Experience.vars.prototype)|e('html_attr')}}">
+        <div class="col-sm-8 offset-sm-1" id="exp_list" data-prototype="{{form_widget(form.Experience.vars.prototype)|e('html_attr')}}">
             {% for row in form.Experience %}
-                <div class="card">
+                <div class="card mb-2">
                     <div class="card-header bg-warning">
-                        {{ row.vars.value.title }}
+                        <strong>{{ row.vars.value.title }}</strong>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">

@@ -5,7 +5,7 @@ require("../css/app.css");
 var $collectionHolder;
 
 //add new items (experience forms)
-var $addNewItem = $('<a href="#" class="btn btn-success">Add new item</a>');
+var $addNewItem = $('<a href="#" class="btn btn-info mt-4">Add new item</a>');
 
 $(document).ready(function() {
   //getTheCollection Holder
